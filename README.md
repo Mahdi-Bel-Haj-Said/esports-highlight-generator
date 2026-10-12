@@ -1,4 +1,4 @@
-# 🎮 AI Esports Highlight Generator — Gamefy Academy
+# 🎮 AI Esports Highlight Generator
 
 > **Technical case study** of a production project I built as a Part-Time AI Developer at **Gamefy Academy** (Remote, 12/2025 – 02/2026).
 > The source code is proprietary and covered by a confidentiality agreement, so this repository contains **no company code**. It documents the problem, the architecture, the ML pipeline, my engineering decisions and the measured results. The code snippets were written from scratch for this case study to show the approach.
@@ -14,9 +14,7 @@
 
 ---
 
-## TL;DR
-
-Gamefy Academy produces esports content (tournament broadcasts, coaching sessions, community matches). Turning a **3–4 hour Twitch VOD** into a **5-minute highlight reel** used to mean an editor scrubbing through the whole video by hand.
+ Turning a **3–4 hour Twitch VOD** into a **5-minute highlight reel** used to mean an editor scrubbing through the whole video by hand.
 
 I built an **AI pipeline + FastAPI service** that:
 
@@ -133,5 +131,3 @@ See [docs/05-results-and-evaluation.md](docs/05-results-and-evaluation.md) for h
 | Quality | pytest, a small labelled evaluation set, structured logging |
 
 ---
-
-*Built by [Mahdi Bel Haj Said](https://github.com/Mahdi-Bel-Haj-Said). Happy to walk through the design in an interview.*
