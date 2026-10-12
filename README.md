@@ -28,48 +28,6 @@ I built an **AI pipeline + FastAPI service** that:
 
 ---
 
-## Architecture at a glance
-
-```mermaid
-flowchart LR
-    subgraph Sources
-        TW[Twitch Helix API<br/>VODs + Clips]
-        UP[Manual upload<br/>MP4 / URL]
-    end
-
-    subgraph API["FastAPI service"]
-        EP[REST endpoints<br/>/jobs /search /render]
-    end
-
-    subgraph Workers["Celery GPU workers"]
-        ING[1 · Ingestion<br/>yt-dlp + FFmpeg]
-        ASR[2 · Transcription<br/>Whisper large-v3]
-        AUD[3 · Audio features<br/>librosa RMS / onset]
-        EVT[4 · Event detection<br/>BART-MNLI zero-shot<br/>+ esports lexicon]
-        SCR[5 · Highlight scoring<br/>signal fusion + NMS]
-        EMB[6 · Semantic index<br/>sentence-transformers + FAISS]
-        SUM[7 · Titles / descriptions<br/>BART-CNN]
-        REN[8 · Reel assembly<br/>FFmpeg]
-    end
-
-    DB[(PostgreSQL<br/>jobs, segments, events)]
-    RD[(Redis<br/>broker + cache)]
-    OBJ[(Object storage<br/>VODs, audio, reels)]
-    UI[Editor dashboard<br/>review + search]
-
-    TW --> EP
-    UP --> EP
-    EP --> RD --> ING
-    ING --> ASR --> EVT
-    ING --> AUD --> SCR
-    EVT --> SCR
-    TW -. clip offsets .-> SCR
-    ASR --> EMB
-    SCR --> SUM --> REN
-    REN --> OBJ
-    Workers <--> DB
-    UI <--> EP
-```
 
 ---
 
